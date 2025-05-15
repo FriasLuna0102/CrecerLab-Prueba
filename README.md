@@ -82,11 +82,19 @@ El proyecto está dividido en tres capas principales:
 1. **Clonar el repositorio**:
 
 ```bash
-git clone https://github.com/tu-usuario/wikipedia-analyzer.git
-cd wikipedia-analyzer
+git clone https://github.com/FriasLuna0102/CrecerLab-Prueba
+cd CrecerLab-Prueba
 ```
 
 2. **Crear una base de datos PostgreSQL:**
+
+En caso de no tener el cliente, instalar (Linux):
+```bash
+
+sudo apt update
+sudo apt install postgresql postgresql-contrib -y
+```
+En caso de que si:
 
 ```bash
 sudo -u postgres psql
@@ -95,11 +103,19 @@ CREATE USER postgres WITH PASSWORD 'postgres';
 GRANT ALL PRIVILEGES ON DATABASE wikipedia_analyzer TO postgres;
 \q
 ```
+Crea el usuario como gustes,en mi caso utilice el mismo de postgres con la password "postgres".
 
 3.**Crear y activar un entorno virtual:**
 
 ```bash
 python -m venv venv
+source venv/bin/activate  # En Linux/Mac
+```
+Sino funciona instala:
+
+```bash
+apt install python3.12-venv
+python3 -m venv venv
 source venv/bin/activate  # En Linux/Mac
 ```
 
@@ -144,8 +160,8 @@ Abrir navegador en http://localhost:5173
 
 Clonar el repositorio:
 ```bash
-git clone https://github.com/tu-usuario/wikipedia-analyzer.git
-cd wikipedia-analyzer
+git clone https://github.com/FriasLuna0102/CrecerLab-Prueba
+cd CrecerLab-Prueba
 ```
 
 Iniciar los contenedores con Docker Compose:
@@ -162,7 +178,7 @@ Abrir navegador en http://localhost:5173 para el frontend y http://localhost:800
 
 # 🧪 Ejecutar Pruebas
 ## El proyecto incluye pruebas unitarias e integración para el backend:
-bashcd backend
+cd backend
 pytest -v
 🔌 Endpoints API
 El backend expone los siguientes endpoints REST:
