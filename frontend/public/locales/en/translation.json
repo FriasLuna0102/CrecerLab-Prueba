@@ -1,0 +1,84 @@
+{
+  "appName": "Wikipedia Analyzer",
+  "home": "Home",
+  "savedArticles": "Saved Articles",
+  "searchWikipedia": "Search Wikipedia...",
+  "search": "Search",
+  "searchResults": "Search Results",
+  "foundArticles": "Found {{count}} articles",
+  "noResults": "No articles found. Try a different search term.",
+  "loading": "Loading...",
+  "searching": "Searching...",
+  "error": "Error: {{message}}",
+
+  "articleDetail": {
+    "viewOnWikipedia": "View on Wikipedia",
+    "saving": "Saving...",
+    "saved": "Saved",
+    "saveArticle": "Save Article",
+    "wordCount": "Word Count",
+    "summary": "Summary",
+    "noSummary": "No summary available",
+    "contentAnalysis": "Content Analysis",
+    "mostCommonWords": "Most Common Words",
+    "sentimentAnalysis": "Sentiment Analysis",
+    "overallSentiment": "Overall Sentiment",
+    "positive": "Positive: {{value}}%",
+    "negative": "Negative: {{value}}%",
+    "entityRecognition": "Entity Recognition",
+
+    "wordFrequencyVisualization": "Word Frequency Visualization",
+    "chartType": "Chart Type",
+    "verticalBar": "Vertical Bar",
+    "horizontalBar": "Horizontal Bar",
+    "occurrences": "occurrences",
+    "frequency": "Frequency",
+    "noDataAvailable": "No word frequency data available",
+    "wordFrequency": "Word Frequency"
+  },
+
+  "savedPage": {
+    "mySavedArticles": "My Saved Articles",
+    "noSavedArticles": "No Saved Articles",
+    "noSavedArticlesDesc": "Articles you save will appear here. Go to the home page to search for articles.",
+    "words": "Words: {{count}}",
+    "saved": "Saved: {{date}}",
+    "viewDetails": "View Details",
+    "delete": "Delete",
+    "deleting": "Deleting...",
+    "showing": "Showing {{shown}} of {{total}} articles",
+    "page": "Page {{current}} of {{total}}",
+    "prev": "Prev",
+    "next": "Next"
+  },
+
+  "notes": {
+    "personalNotes": "Personal Notes",
+    "addNotes": "Add Notes",
+    "editNotes": "Edit Notes",
+    "noNotes": "No personal notes yet.",
+    "cancel": "Cancel",
+    "saveNotes": "Save Notes",
+    "savingNotes": "Saving..."
+  },
+
+  "confirmDialog": {
+    "confirmDeletion": "Confirm Deletion",
+    "areYouSureDelete": "Are you sure you want to delete \"{{title}}\"?",
+    "delete": "Delete",
+    "cancel": "Cancel"
+  },
+
+  "heroSection": {
+    "title": "Wikipedia Analyzer",
+    "subtitle": "Search, analyze, and save articles from Wikipedia"
+  },
+
+  "navigation": {
+    "back": "Back"
+  },
+
+  "unknown": "Unknown date",
+  "tryAgain": "Try Again",
+  "reload": "Reload"
+}
