@@ -1,0 +1,84 @@
+{
+  "appName": "Analizador de Wikipedia",
+  "home": "Inicio",
+  "savedArticles": "Artículos Guardados",
+  "searchWikipedia": "Buscar en Wikipedia...",
+  "search": "Buscar",
+  "searchResults": "Resultados de Búsqueda",
+  "foundArticles": "{{count}} artículos encontrados",
+  "noResults": "No se encontraron artículos. Intenta con otro término de búsqueda.",
+  "loading": "Cargando...",
+  "searching": "Buscando...",
+  "error": "Error: {{message}}",
+
+  "articleDetail": {
+    "viewOnWikipedia": "Ver en Wikipedia",
+    "saving": "Guardando...",
+    "saved": "Guardado",
+    "saveArticle": "Guardar Artículo",
+    "wordCount": "Número de Palabras",
+    "summary": "Resumen",
+    "noSummary": "No hay resumen disponible",
+    "contentAnalysis": "Análisis de Contenido",
+    "mostCommonWords": "Palabras más Comunes",
+    "sentimentAnalysis": "Análisis de Sentimiento",
+    "overallSentiment": "Sentimiento General",
+    "positive": "Positivo: {{value}}%",
+    "negative": "Negativo: {{value}}%",
+    "entityRecognition": "Reconocimiento de Entidades",
+
+    "wordFrequencyVisualization": "Visualización de Frecuencia de Palabras",
+    "chartType": "Tipo de Gráfico",
+    "verticalBar": "Barras Verticales",
+    "horizontalBar": "Barras Horizontales",
+    "occurrences": "ocurrencias",
+    "frequency": "Frecuencia",
+    "noDataAvailable": "No hay datos de frecuencia disponibles",
+    "wordFrequency": "Frecuencia de Palabras"
+  },
+
+  "savedPage": {
+    "mySavedArticles": "Mis Artículos Guardados",
+    "noSavedArticles": "No hay Artículos Guardados",
+    "noSavedArticlesDesc": "Los artículos que guardes aparecerán aquí. Ve a la página de inicio para buscar artículos.",
+    "words": "Palabras: {{count}}",
+    "saved": "Guardado: {{date}}",
+    "viewDetails": "Ver Detalles",
+    "delete": "Eliminar",
+    "deleting": "Eliminando...",
+    "showing": "Mostrando {{shown}} de {{total}} artículos",
+    "page": "Página {{current}} de {{total}}",
+    "prev": "Anterior",
+    "next": "Siguiente"
+  },
+
+  "notes": {
+    "personalNotes": "Notas Personales",
+    "addNotes": "Añadir Notas",
+    "editNotes": "Editar Notas",
+    "noNotes": "Aún no hay notas personales.",
+    "cancel": "Cancelar",
+    "saveNotes": "Guardar Notas",
+    "savingNotes": "Guardando..."
+  },
+
+  "confirmDialog": {
+    "confirmDeletion": "Confirmar Eliminación",
+    "areYouSureDelete": "¿Estás seguro de que quieres eliminar \"{{title}}\"?",
+    "delete": "Eliminar",
+    "cancel": "Cancelar"
+  },
+
+  "heroSection": {
+    "title": "Analizador de Wikipedia",
+    "subtitle": "Busca, analiza y guarda artículos de Wikipedia"
+  },
+
+  "navigation": {
+    "back": "Volver"
+  },
+
+  "unknown": "Fecha desconocida",
+  "tryAgain": "Intentar de nuevo",
+  "reload": "Recargar"
+}
