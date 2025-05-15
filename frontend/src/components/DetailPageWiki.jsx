@@ -47,6 +47,8 @@ function DetailPageWiki() {
     });
   };
 
+  const handleSaveSuccess = () => {
+  };
 
   const handleBackClick = () => {
     navigate(-1);
