@@ -1,6 +1,7 @@
-from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, Text, DateTime
 from sqlalchemy.sql import func
 from app.db.base import Base
+from pydantic import ConfigDict
 
 
 class SavedArticle(Base):
@@ -22,5 +23,4 @@ class SavedArticle(Base):
 
     user_id = Column(String(50), nullable=False, index=True)
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)

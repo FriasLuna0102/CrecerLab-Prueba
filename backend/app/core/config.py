@@ -1,25 +1,23 @@
-import os
+from typing import Optional
+
 from pydantic_settings import BaseSettings
-from dotenv import load_dotenv
-
-load_dotenv()
-
+from functools import lru_cache
+from pydantic import ConfigDict
 
 class Settings(BaseSettings):
-    """Configuraciones de la aplicación cargadas desde variables de entorno o .env"""
-
-    API_PREFIX: str = os.getenv("API_PREFIX", "/api")
-    DEBUG: bool = os.getenv("DEBUG", False)
+    API_PREFIX: str = "/test_api"
+    DEBUG: bool = False
     PROJECT_NAME: str = "Wikipedia Analyzer API"
     VERSION: str = "0.1.0"
-
-    DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./test.db")
-
-    WIKIPEDIA_API_URL: str = os.getenv("WIKIPEDIA_API_URL", "https://en.wikipedia.org/w/api.php")
-
-    class Config:
-        env_file = ".env"
-        case_sensitive = True
+    DATABASE_URL: str
+    WIKIPEDIA_API_URL: str = "https://en.wikipedia.org/w/api.php"
+    SECRET_KEY: Optional[str] = None
 
 
-settings = Settings()
+    model_config = ConfigDict(env_file=".env", case_sensitive=True)
+
+@lru_cache()
+def get_settings() -> Settings:
+    return Settings()
+
+settings = get_settings()

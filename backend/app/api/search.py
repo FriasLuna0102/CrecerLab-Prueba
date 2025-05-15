@@ -1,8 +1,15 @@
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, HTTPException, Query
 from app.services.wiki_service import WikipediaService
 from app.schemas.article import WikiSearchResponse
+import logging
 
-router = APIRouter()
+router = APIRouter(
+    prefix="/search",
+    tags=["Search"],
+    responses={404: {"description": "Not found"}}
+)
+
+logger = logging.getLogger(__name__)
 
 @router.get("/", response_model=WikiSearchResponse)
 async def search_wikipedia(
@@ -17,4 +24,5 @@ async def search_wikipedia(
         search_response = wiki_service.search_articles(query=q, limit=limit)
         return search_response
     except Exception as e:
+        logger.error(f"Error al buscar en Wikipedia: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al buscar en Wikipedia: {str(e)}")

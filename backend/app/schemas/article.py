@@ -1,16 +1,37 @@
-from typing import List, Optional, Any
+from typing import List, Optional, Generic, TypeVar
 from pydantic import BaseModel, Field
 from datetime import datetime
+from pydantic import ConfigDict
 
-class WikiSearchResult(BaseModel):
-    page_id: int
+T = TypeVar('T')
+
+class ArticleBase(BaseModel):
     title: str
-    snippet: Optional[str] = None
-    url: Optional[str] = None
+    wikipedia_id: str
+    wikipedia_url: str
+    summary: Optional[str] = None
 
-class WikiSearchResponse(BaseModel):
-    results: List[WikiSearchResult]
-    total: int
+class SavedArticleCreate(ArticleBase):
+    full_text: Optional[str] = None
+    word_count: Optional[int] = None
+    frequent_words: Optional[List[dict]] = None
+    user_id: str = "default_user"
+
+class SavedArticleUpdate(BaseModel):
+    title: Optional[str] = None
+    summary: Optional[str] = None
+    personal_notes: Optional[str] = None
+
+class SavedArticleInDB(ArticleBase):
+    id: int
+    word_count: Optional[int] = None
+    frequent_words: Optional[List[dict]] = None
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
+    personal_notes: Optional[str] = None
+
+    model_config = ConfigDict(from_attributes=True)
+
 
 class WordFrequency(BaseModel):
     word: str
@@ -30,45 +51,24 @@ class Entity(BaseModel):
 
 class ArticleAnalysis(BaseModel):
     word_count: int
-    frequent_words: List[WordFrequency] = Field(..., max_items=10)
+    frequent_words: List[WordFrequency] = Field(..., max_length=10)
     sentiment: Optional[SentimentAnalysis] = None
     entities: Optional[List[Entity]] = None
 
-class SavedArticleBase(BaseModel):
+class WikiSearchResult(BaseModel):
+    page_id: int
     title: str
-    wikipedia_id: str
-    wikipedia_url: str
-    summary: Optional[str] = None
-    personal_notes: Optional[str] = None
+    snippet: Optional[str] = None
+    url: Optional[str] = None
 
-class SavedArticleCreate(SavedArticleBase):
-    full_text: Optional[str] = None
-    word_count: Optional[int] = None
-    frequent_words: Optional[List[WordFrequency]] = None
-    user_id: str = "default_user"
-
-class SavedArticleUpdate(BaseModel):
-    title: Optional[str] = None
-    summary: Optional[str] = None
-    personal_notes: Optional[str] = None
-
-
-class SavedArticleInDB(SavedArticleBase):
-    id: int
-    word_count: Optional[int] = None
-    frequent_words: Optional[List[WordFrequency]] = None
-    created_at: Optional[datetime] = None
-    updated_at: Optional[datetime] = None
-    personal_notes: Optional[str] = None
-
-    class Config:
-        from_attributes = True
+class WikiSearchResponse(BaseModel):
+    results: List[WikiSearchResult]
+    total: int
 
 class ArticleDetailResponse(BaseModel):
     article: SavedArticleInDB
     analysis: ArticleAnalysis
 
-
-class PaginatedResponse(BaseModel):
-    items: List[Any]
+class PaginatedResponse(Generic[T]):
+    items: List[T]
     total: int

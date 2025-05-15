@@ -14,12 +14,16 @@ from app.schemas.article import (
 from app.db.models import SavedArticle
 from sqlalchemy.exc import SQLAlchemyError
 from datetime import datetime as dt
+import logging
 
+router = APIRouter(
+    prefix="/articles",
+    tags=["Articles"],
+    responses={404: {"description": "Not found"}}
+)
 
-router = APIRouter()
-
+logger = logging.getLogger(__name__)
 DEFAULT_USER_ID = "default_user"
-
 
 @router.get("/detail/{page_id}", response_model=ArticleDetailResponse)
 async def get_article_detail(
@@ -74,6 +78,7 @@ async def get_article_detail(
         return ArticleDetailResponse(article=article, analysis=analysis)
 
     except Exception as e:
+        logger.error(f"Error al obtener detalles del artículo: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al obtener detalles del artículo: {str(e)}")
 
 
@@ -94,8 +99,15 @@ async def save_article(
         if db_article:
             raise HTTPException(status_code=400, detail="El artículo ya está guardado")
 
-        frequent_words_str = str(
-            [{"word": wf.word, "count": wf.count} for wf in article.frequent_words]) if article.frequent_words else None
+        if article.frequent_words:
+            if hasattr(article.frequent_words[0], 'word'):
+                frequent_words_str = str(
+                    [{"word": wf.word, "count": wf.count} for wf in article.frequent_words])
+            else:
+                # Si ya son diccionarios
+                frequent_words_str = str(article.frequent_words)
+        else:
+            frequent_words_str = None
 
         db_article = SavedArticle(
             title=article.title,
@@ -130,8 +142,10 @@ async def save_article(
         raise
     except SQLAlchemyError as e:
         db.rollback()
+        logger.error(f"Error de base de datos: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error de base de datos: {str(e)}")
     except Exception as e:
+        logger.error(f"Error al guardar el artículo: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al guardar el artículo: {str(e)}")
 
 
@@ -177,10 +191,7 @@ async def get_saved_articles(
         }
 
     except Exception as e:
-        import traceback
-        print(f"Error al obtener artículos guardados: {str(e)}")
-        print(traceback.format_exc())
-
+        logger.error(f"Error al obtener artículos guardados: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al obtener artículos guardados: {str(e)}")
 
 @router.patch("/{article_id}", response_model=SavedArticleInDB)
@@ -232,8 +243,10 @@ async def update_article(
         raise
     except SQLAlchemyError as e:
         db.rollback()
+        logger.error(f"Error de base de datos: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error de base de datos: {str(e)}")
     except Exception as e:
+        logger.error(f"Error al actualizar el artículo: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al actualizar el artículo: {str(e)}")
 
 
@@ -263,6 +276,8 @@ async def delete_article(
         raise
     except SQLAlchemyError as e:
         db.rollback()
+        logger.error(f"Error de base de datos: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error de base de datos: {str(e)}")
     except Exception as e:
+        logger.error(f"Error al eliminar el artículo: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al eliminar el artículo: {str(e)}")

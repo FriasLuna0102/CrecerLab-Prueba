@@ -1,7 +1,10 @@
-from fastapi import APIRouter
-from app.api import articles, search
+from fastapi import FastAPI
+from app.api import articles_router, search_router
+from app.core.config import settings
 
-api_router = APIRouter()
-
-api_router.include_router(search.router, prefix="/search", tags=["Search"])
-api_router.include_router(articles.router, prefix="/articles", tags=["Articles"])
+def include_routers(app: FastAPI):
+    """
+    Incluye todos los routers en la aplicación FastAPI
+    """
+    app.include_router(articles_router, prefix=settings.API_PREFIX)
+    app.include_router(search_router, prefix=settings.API_PREFIX)

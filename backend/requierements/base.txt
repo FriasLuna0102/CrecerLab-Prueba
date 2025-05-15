@@ -10,3 +10,10 @@ alembic>=1.11.1  # Database migrations
 pydantic-settings>=2.0.0  # Settings management
 textblob>=0.17.1  # Text analysis
 spacy>=3.5.0  # Natural language processing
+
+# Testing
+pytest>=7.4.0  # Testing framework
+pytest-asyncio>=0.21.1  # Async testing support for pytest
+httpx>=0.24.1  # HTTP client for testing FastAPI
+pytest-cov>=4.1.0  # Coverage reporting
+pytest-mock>=3.11.1  # Mocking for pytest
